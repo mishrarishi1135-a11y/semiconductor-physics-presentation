@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semiconductor Physics: The Foundation of Modern Electronics</title>
+  <meta name="description" content="Futuristic 3D Interactive Masterclass Presentation on Semiconductor Physics: Energy Bands, Carriers, Fermi Level, Transport, and Hall Effect.">
+
+  <!-- Google Fonts: Orbitron (Futuristic Display) + Rajdhani (Technical Headers) + Inter (Clean Text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- KaTeX CSS for mathematical equations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Fullscreen 3D Three.js Canvas -->
+  <canvas id="three-bg-canvas"></canvas>
+
+  <!-- Futuristic Cyber Circuit Overlay & Ambient Scanline Grid -->
+  <div class="cyber-overlay">
+    <div class="circuit-grid-pattern"></div>
+    <div class="vignette-radial"></div>
+  </div>
+
+  <!-- Top Cyber HUD Header -->
+  <header class="cyber-hud-header">
+    <div class="hud-left">
+      <div class="hud-logo-wrapper">
+        <svg class="hud-logo-icon" viewBox="0 0 24 24" width="22" height="22" stroke="#00f2fe" fill="none" stroke-width="2">
+          <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+          <rect x="9" y="9" width="6" height="6"></rect>
+          <line x1="9" y1="1" x2="9" y2="4"></line>
+          <line x1="15" y1="1" x2="15" y2="4"></line>
+          <line x1="9" y1="20" x2="9" y2="23"></line>
+          <line x1="15" y1="20" x2="15" y2="23"></line>
+          <line x1="20" y1="9" x2="23" y2="9"></line>
+          <line x1="20" y1="14" x2="23" y2="14"></line>
+          <line x1="1" y1="9" x2="4" y2="9"></line>
+          <line x1="1" y1="14" x2="4" y2="14"></line>
+        </svg>
+        <span class="hud-brand-title">SEMI-CORE <span class="brand-sub">// v3.0</span></span>
+      </div>
+      <div class="hud-divider"></div>
+      <div id="hud-breadcrumb" class="hud-breadcrumb">
+        <span class="hud-tag">TOPIC 00</span> SYSTEM INITIALIZATION
+      </div>
+    </div>
+
+    <div class="hud-right">
+      <div class="hud-counter-box">
+        <span class="hud-counter-label">INDEX</span>
+        <span id="hud-counter" class="hud-counter-val">00 / 22</span>
+      </div>
+
+      <div class="hud-actions-group">
+        <button id="btn-toggle-autoplay" class="hud-btn" title="Toggle Auto-Play [P]">
+          <span class="hud-btn-icon">▶</span>
+          <span class="hud-btn-label">AUTO</span>
+        </button>
+
+        <button id="btn-open-overview" class="hud-btn" title="Slide Matrix Grid [O]">
+          <span class="hud-btn-icon">▦</span>
+          <span class="hud-btn-label">GRID</span>
+        </button>
+
+        <button id="btn-open-questions" class="hud-btn" title="Interactive Questions & Formula Hub [Q]">
+          <span class="hud-btn-icon">?</span>
+          <span class="hud-btn-label">Q&A</span>
+        </button>
+
+        <button id="btn-toggle-sound" class="hud-btn" title="Toggle Audio FX [M]">
+          <span class="hud-btn-icon">🔊</span>
+          <span class="hud-btn-label">AUDIO</span>
+        </button>
+
+        <button id="btn-toggle-fs" class="hud-btn" title="Toggle Fullscreen [F]">
+          <span class="hud-btn-icon">⛶</span>
+          <span class="hud-btn-label">FULL</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Slide Viewport -->
+  <main class="viewport-wrapper">
+    <div id="slide-viewport" class="slide-viewport">
+      <!-- Active slide is mounted here dynamically by app.js -->
+    </div>
+  </main>
+
+  <!-- Bottom Futuristic Navigation Bar -->
+  <footer class="cyber-bottom-nav">
+    <div class="nav-controls-container">
+      <button id="btn-prev" class="nav-arrow-btn" title="Previous Slide [← or PageUp]">
+        <span class="arrow-sym">◀</span>
+        <span class="arrow-text">PREV</span>
+      </button>
+
+      <!-- Numbered topic pill bar (00 to 10 + END) -->
+      <div class="nav-pills-viewport">
+        <div id="nav-pills-track" class="nav-pills-track">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+
+      <button id="btn-next" class="nav-arrow-btn" title="Next Slide [→ or Space]">
+        <span class="arrow-text">NEXT</span>
+        <span class="arrow-sym">▶</span>
+      </button>
+    </div>
+
+    <!-- Glowing Progress Line -->
+    <div class="hud-progress-bar">
+      <div id="progress-bar-fill" class="progress-fill"></div>
+    </div>
+  </footer>
+
+  <!-- MODAL 1: 22-Slide Matrix Overview Grid -->
+  <div id="overview-modal" class="cyber-modal-backdrop">
+    <div class="cyber-modal-card">
+      <div class="modal-header">
+        <div class="mh-left">
+          <span class="mh-badge">INDEX MATRIX</span>
+          <h2 class="mh-title">CURRICULUM DECK OVERVIEW [22 SLIDES]</h2>
+        </div>
+        <button id="btn-close-overview" class="modal-close-btn">✕ ESC</button>
+      </div>
+      <div class="modal-body">
+        <div id="overview-grid" class="overview-cards-grid">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: Interactive Questions & Key Formulas Hub -->
+  <div id="questions-modal" class="cyber-modal-backdrop">
+    <div class="cyber-modal-card modal-lg">
+      <div class="modal-header">
+        <div class="mh-left">
+          <span class="mh-badge">INTERACTIVE Q&A & ARCHIVE</span>
+          <h2 class="mh-title">CLASSROOM QUESTIONS & CONCEPT DEEP-DIVE</h2>
+        </div>
+        <button id="btn-close-questions" class="modal-close-btn">✕ ESC</button>
+      </div>
+      <div class="modal-body">
+        <div class="qmodal-tabs-header">
+          <span class="qtab active">Interactive Questions</span>
+          <span class="qtab-note">Click "Reveal Answer" to test understanding during presentation</span>
+        </div>
+        <div id="questions-list" class="questions-accordion-list">
+          <!-- Populated dynamically from questionsData in slidesData.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Entry Script -->
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
